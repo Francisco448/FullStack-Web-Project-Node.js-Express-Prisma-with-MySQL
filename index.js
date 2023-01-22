@@ -9,7 +9,7 @@ const app = express();
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
-app.set('Views', path.join(__dirname, 'Public/Views'));
+app.set('views', path.join(__dirname, 'Public/Views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
