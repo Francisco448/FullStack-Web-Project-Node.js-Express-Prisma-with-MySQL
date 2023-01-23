@@ -1,13 +1,23 @@
 const app = require('express').Router();
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const passport = require('passport');
 
+app.get('/signin', (req, res) => {
+    res.render('Account/signin.ejs');
+})
 
-
-app.get('/', (req, res) => {
-    res.render('Account/Account.ejs');
+app.get('/signup', (req, res) => {
+    res.render('Account/signup.ejs')
 })
 
 
+app.post('/signup', passport.authenticate('Local-SignUp', {
+    successRedirect: '/signin',
+    failureRedirect: '/signup',
+    passReqToCallback: true
+}))
+
+app.get('/Profile', (req, res) => {
+    res.render('Profile/Profile.ejs');
+})
 
 module.exports = app;

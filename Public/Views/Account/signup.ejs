@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('../components/_Links.ejs')%>
+    <link rel="stylesheet" href="../../Css/Base.css">
+    <title>Sign UP</title>
+</head>
+<body>
+    <%if(message){%>
+        <div class="message"> <%= message %></div>  
+    <%}%>
+    <form action="/signup" method="post">
+        <div class="card mx-auto" id="registerForm">
+            <div class="row">
+                <a class="backButton mt-3" href="/signin"><box-icon type='solid' color="#82ccdd" name='left-arrow'></box-icon></a>
+                <h3 class="w-100 mt-3 text-center position-absolute">Sign Up</h3>
+            </div>
+            <div class="row">
+                <input type="text" placeholder="FirstName" name="FirstName" id="inputForm">
+                <input type="text" placeholder="LastName" name="LastName" id="inputForm">
+            </div>
+            <div class="row">
+                <input type="text" placeholder="Dni" name="UidSerie" id="inputForm">
+                <input type="text" placeholder="E-mail" name="Email" id="inputForm">
+            </div>
+            <div class="row">
+                <input type="date" name="BirthDate" id="inputForm">
+                <select name="Gender">
+                    <option value="Seleccione su identidad de genero" selected>Seleccione su identidad de genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="No binario">No binario</option>
+                </select>
+            </div>
+            <div class="row">
+                <input type="password" name="regPassword" placeholder="Password" id="inputForm">
+                <input type="password" placeholder="Confirm Password" id="inputForm">
+            </div>
+            <div class="row w-100">
+                <button type="submit" class="regButton w-75">Register</button>
+            </div>
+        </div>
+    </form>
+</body>
+<%-include('../components/_Scripts.ejs')%>
+<script type="text/Javascript" src="../../Scripts/Account.js"></script>
+</html>

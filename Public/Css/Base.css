@@ -5,7 +5,6 @@
     --input-focus: #38ada9;
 }
 
-
 ::placeholder {
     color: var(--font);
 }
@@ -21,7 +20,6 @@ form{
     height: 100%;
 }
 
-
 /* Login---------------------------------------------------------------------------------------- */
 #loginForm {
     height: 400px;
@@ -29,13 +27,7 @@ form{
     margin-top: 100px;
     position: relative;
     color: var(--font);
-    visibility: visible;
 }
-
-#loginForm.show{
-    visibility: hidden;
-}
-
 
 #loginForm .row {
     width: 100%;
@@ -94,12 +86,8 @@ form{
     width: 420px;
     margin-top: 100px;
     color: var(--font);
-    visibility: hidden;
 }
 
-#registerForm.show{
-    visibility: visible;
-}
 
 #registerForm .row{
     display: flex;
@@ -112,7 +100,6 @@ form{
     width: 45%;
     margin: auto;
 }
-
 
 #registerForm select{
     background-color: transparent;
@@ -135,6 +122,9 @@ form{
     outline: none;
     color: #82ccdd;
     background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .regButton{
