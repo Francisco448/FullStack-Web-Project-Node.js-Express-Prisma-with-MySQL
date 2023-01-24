@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%-include('../components/_Links.ejs')%>
-    <link rel="stylesheet" href="../../Css/Base.css">
-    <title>Sign In</title>
+        <link rel="stylesheet" href="../../Css/Account/Base.css">
+        <title>Sign In</title>
 </head>
+
 <body>
-    <form action="">
+<%if(message){%>
+    <div class="message"><%= message %></div>
+<%}%>
+    <form action="/signin" method="post">
         <div class="card mx-auto" id="loginForm">
             <div class="row h-25">
                 <h3 class="w-100 mt-3 text-center">Sign In</h3>
             </div>
             <div class="row h-75">
-                <input type="text" class="mx-auto w-75 mt-4" autocomplete="off" placeholder="UserName" id="inputForm">
-                <input type="password" class="mx-auto w-75 mt-4" autocomplete="off" placeholder="Password" id="inputForm">
+                <input type="text" class="mx-auto w-75 mt-4" autocomplete="off" placeholder="E-mail"
+                    name="Email" id="inputForm">
+                <input type="password" class="mx-auto w-75 mt-4" autocomplete="off" placeholder="Password"
+                    name="Password" id="inputForm">
                 <button type="submit" class="w-75 mx-auto">Entrace</button>
             </div>
             <div class="row h-25">
@@ -24,8 +31,9 @@
                 <a class="w-100 text-center">You forgot your password?</a>
             </div>
         </div>
-    </form>    
+    </form>
 </body>
 <%-include('../components/_Scripts.ejs')%>
-<script type="text/Javascript" src="../../Scripts/Account.js"></script>
+    <script type="text/Javascript" src="../../Scripts/Account.js"></script>
+
 </html>

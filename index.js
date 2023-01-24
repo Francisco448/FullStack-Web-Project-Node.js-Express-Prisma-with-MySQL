@@ -23,9 +23,11 @@ app.use(session({
     saveUninitialized: false,
     store: MYSQLStorage(connectionString)
 }));
+
 app.use(flash());
-passport.initialize();
-passport.session();
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use((req, res, next) => {
     app.locals.message = req.flash('message');

@@ -16,7 +16,7 @@ passport.use('Local-SignUp', new LocalStrategy({
             Email: req.body.Email
         }
     });
-    if(user == null){
+    if (user == null) {
         const hash = await help.Encrypt(password);
         await prisma.users.create({
             data: {
@@ -38,25 +38,38 @@ passport.use('Local-SignUp', new LocalStrategy({
     } else {
         done(null, false, req.flash('message', 'the user is already created.'));
     }
-    
+
 }))
 
+passport.use('Local-Signin', new LocalStrategy({
+    usernameField: 'Email',
+    passwordField: 'Password',
+    passReqToCallback: true
+}, async (req, Email, password, done) => {
+    const user = await prisma.users.findFirst({
+        where: {
+            Email: Email
+        }
+    })
+    if (user != null) {
+        const valid = help.Compare(password, user.Password);
+        if (valid) {
+            return done(null, user, req.flash('success', 'Welcome'));
+        } else {
+            return done(null, false, req.flash('message', 'Invalid password'));
+        }
 
-
-
-
-
-
-
-
-
+    } else {
+        return done(null, false, req.flash('message', 'User not exist, please Sign Up'));
+    }
+}))
 
 
 passport.serializeUser((user, done) => {
     done(null, user.Id);
 })
 
-passport.deserializeUser(async(user, done) => {
+passport.deserializeUser(async (user, done) => {
     const users = await prisma.users.findFirst({
         where: {
             Id: user.id
