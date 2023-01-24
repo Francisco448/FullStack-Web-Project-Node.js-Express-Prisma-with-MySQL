@@ -1,0 +1,38 @@
+@import url('../../Views/elements/navBar/navBar.css');
+
+:root{
+    --backgroup: #0a3d62;
+}
+
+body{
+    background-color: var(--backgroup);
+}
+
+
+
+.dashboard{
+    height: 95%;
+    width: calc(100% - 180px);
+    position: absolute;
+    left: 0;
+    right: 20px;
+    top: 20px;
+    right: 0;
+    margin: auto;
+    margin-right: 20px;
+    transition: all 0.3s;
+}
+
+
+.sidebar.open ~.dashboard{
+    height: 95%;
+    width: calc(100% - 350px);
+    position: absolute;
+    left: 0;
+    right: 20px;
+    top: 20px;
+    right: 0;
+    margin: auto;
+    margin-right: 20px;
+    transition: all 0.3s;
+}
