@@ -11,8 +11,11 @@
 <body>
         <%- include('../elements/navBar/navBar.ejs')%>
         <div class="dashboard card">
-            
+            <%- include('./partials/_products.ejs')%>
         </div>
 </body>
+
+<%- include('../components/_Scripts.ejs')%>
+<script src="../../../Views/elements/navBar/navBar.js"></script>
 <script src="../../Scripts/Profile/profile.js"></script>
 </html>

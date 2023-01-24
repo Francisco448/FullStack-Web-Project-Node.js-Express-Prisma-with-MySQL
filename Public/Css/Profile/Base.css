@@ -8,8 +8,6 @@ body{
     background-color: var(--backgroup);
 }
 
-
-
 .dashboard{
     height: 95%;
     width: calc(100% - 180px);
@@ -23,7 +21,6 @@ body{
     transition: all 0.3s;
 }
 
-
 .sidebar.open ~.dashboard{
     height: 95%;
     width: calc(100% - 350px);
@@ -35,4 +32,21 @@ body{
     margin: auto;
     margin-right: 20px;
     transition: all 0.3s;
+}
+
+
+.prodHeader{
+    height: 8%;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+.prodBody{
+    height: 92%;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
