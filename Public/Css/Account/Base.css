@@ -3,6 +3,8 @@
     --font: gray;
     --input: #82ccdd;
     --input-focus: #38ada9;
+    --message: #f8a5c2;
+    --message-font: #c44569;
 }
 
 ::placeholder {
@@ -141,4 +143,20 @@ form{
     background-color: var(--input);
     color: white;
     transition: all 0.3s;
+}
+
+.message{
+    background-color: var(--message);
+    color: var(--message-font);
+    height: 40px;
+    width: 250px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

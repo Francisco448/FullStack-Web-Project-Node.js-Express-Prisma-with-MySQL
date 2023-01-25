@@ -1,4 +1,6 @@
 const app = require('express').Router();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn } = require('./Auth');
 
@@ -31,13 +33,44 @@ app.post('/signin', isNotLoggedIn, passport.authenticate('Local-Signin', {
 }))
 
 
-app.get('/singout', isLoggedIn, (req, res) => {
-    req.logOut();
-    res.redirect('/signin');
+app.post('/singout', isLoggedIn, (req, res, next) => {
+    req.logOut((err) => {
+        if (err) {
+            return next(err);
+        } else {
+            res.redirect('/signin');
+        }
+    });
 })
 
 app.get('/Profile', isLoggedIn, (req, res) => {
     res.render('Profile/Profile.ejs');
+})
+
+
+app.post('/Products', isLoggedIn, async (req, res) => {
+    const products = await prisma.products.findMany();
+    const datatable = {
+        draw: products.length,
+        start: 0,
+        length: products.length,
+        order: 'ASC',
+        orderDir: 'ASC',
+        data: products
+    }
+    await res.send(datatable);
+})
+
+
+
+app.post('/addProduct', async (req, res) => {
+    await prisma.products.create({
+        data: {
+            Name: req.body.Name,
+            BuyCost: req.body.BuyCost,
+            SalePrice: req.body.SalePrice
+        }
+    })
 })
 
 module.exports = app;

@@ -1,7 +1,13 @@
 @import url('../../Views/elements/navBar/navBar.css');
+@import url('./partials/_Base.css');
 
 :root{
     --backgroup: #0a3d62;
+    --separator: lightgrey;
+}
+
+::placeholder{
+    color: gray;
 }
 
 body{
@@ -32,21 +38,4 @@ body{
     margin: auto;
     margin-right: 20px;
     transition: all 0.3s;
-}
-
-
-.prodHeader{
-    height: 8%;
-    width: 100%;
-    border-bottom: 1px solid lightgrey;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-
-.prodBody{
-    height: 92%;
-    width: 100%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }

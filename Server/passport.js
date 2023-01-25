@@ -45,20 +45,19 @@ passport.use('Local-Signin', new LocalStrategy({
     usernameField: 'Email',
     passwordField: 'Password',
     passReqToCallback: true
-}, async (req, Email, password, done) => {
+}, async (req, Email, Password, done) => {
     const user = await prisma.users.findFirst({
         where: {
             Email: Email
         }
     })
     if (user != null) {
-        const valid = help.Compare(password, user.Password);
+        const valid = await help.Compare(Password, user.Password);
         if (valid) {
             return done(null, user, req.flash('success', 'Welcome'));
         } else {
             return done(null, false, req.flash('message', 'Invalid password'));
         }
-
     } else {
         return done(null, false, req.flash('message', 'User not exist, please Sign Up'));
     }
