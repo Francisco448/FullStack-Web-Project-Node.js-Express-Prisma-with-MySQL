@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%-include('../components/_Links.ejs')%>
     <link rel="stylesheet" href="../../Css/Account/Base.css">
-    <title>Sign UP</title>
+    <title>Sign Up</title>
 </head>
 <body>
-    <%if(message){%>
+    <%if(message != ""){%>
         <div class="message"> <%= message %></div>  
     <%}%>
     <form action="/signup" method="post">
@@ -46,5 +46,4 @@
     </form>
 </body>
 <%-include('../components/_Scripts.ejs')%>
-<script type="text/Javascript" src="../../Scripts/Account.js"></script>
 </html>

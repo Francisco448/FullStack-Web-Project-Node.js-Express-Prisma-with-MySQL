@@ -34,9 +34,10 @@ app.use((req, res, next) => {
     app.locals.success = req.flash('success');
     app.locals.user = req.user;
     next();
-  });
+});
 
-app.use(require('./Server/Controller'));
+app.use(require('./Server/Authentication'));
+app.use(require('./Server/ProfileController'));
 app.use(express.static(path.join(__dirname, 'Public')));
 
 app.listen(app.get('port'), () => {

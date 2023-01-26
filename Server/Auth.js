@@ -7,7 +7,8 @@ module.exports = {
         }
     },
     isNotLoggedIn(req, res, next){
-        if(!req.isAuthenticated()){
+        if(req.isUnauthenticated()){
+            req.user = undefined;
             return next();
         }else{
             return res.redirect('/Profile');

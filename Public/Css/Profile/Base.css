@@ -1,5 +1,5 @@
 @import url('../../Views/elements/navBar/navBar.css');
-@import url('./partials/_Base.css');
+@import url('./partials/_Products.css');
 
 :root{
     --backgroup: #0a3d62;
@@ -38,4 +38,24 @@ body{
     margin: auto;
     margin-right: 20px;
     transition: all 0.3s;
+}
+
+.datatables th{
+    width: 10%;
+    background-color: lightgray;
+}
+
+.productContainer{
+    z-index: 1;
+    display: block;
+}   
+
+.productContainer.hidden{
+    z-index: 0;
+    display: none;
+}   
+
+.movementContainer{
+    z-index: 0;
+    display: none;
 }

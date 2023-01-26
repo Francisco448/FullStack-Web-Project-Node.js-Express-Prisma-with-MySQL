@@ -3,18 +3,20 @@
         <input type="text" placeholder="Name" class="Name" id="inputProduct">
         <input type="text" placeholder="Buy Cost" class="BuyCost" id="inputProduct">
         <input type="text" placeholder="Sale Price" class="SalePrice" id="inputProduct">
-        <button class="Add btn btn-success" id="buttonProduct">Add</button>
-        <button class="btn btn-warning" id="buttonProduct">Update</button>
-        <button class="btn btn-danger" id="buttonProduct">delete</button>
+        <input type="text" placeholder="Units" class="Units" id="inputProduct">
+        <button class="Add btn btn-success" id="buttonProduct">Buy</button>
+        <button class="Edit btn btn-warning" id="buttonProduct">Update</button>
+        <button class="btn btn-danger" id="buttonProduct">Delete</button>
     </div>
     <div class="prodBody">
-        <div class="datatable">
-            <table id="DataGridView">
+        <div class="datatable w-100 h-100">
+            <table id="DataGridView" class="datatables w-100 h-100">
                 <thead>
                     <th>Code Product</th>
                     <th>Name</th>
                     <th>Buy Cost</th>
                     <th>Sale Price</th>
+                    <th>Units</th>
                 </thead>
                 <tbody>
                 </tbody>

@@ -1,12 +1,12 @@
 var Name = $('.Name');
 var BuyCost = $('.BuyCost');
 var SalePrice = $('.SalePrice');
-var inputProduct = $('#inputProduct');
+var Units = $('.Units');
 
 // Validations------------------------------------------------------------------------
 function valid() {
     isValid = false;
-    if (Name.val() != "" && BuyCost.val() != "" && SalePrice.val() != null) {
+    if (Name.val() != "" && BuyCost.val() != "" && SalePrice.val() != null && Units.val()) {
         isValid = true;
     } else {
         isValid = false;
@@ -14,21 +14,26 @@ function valid() {
     return isValid;
 }
 
-function inputValid(){
-    if(Name.val() == ""){
+function inputValid() {
+    if (Name.val() == "") {
         Name.css('border', '1px solid red');
-    }else{
+    } else {
         Name.css('border', 'none');
     }
-    if(BuyCost.val() == ""){
+    if (BuyCost.val() == "") {
         BuyCost.css('border', '1px solid red');;
-    }else{
+    } else {
         BuyCost.css('border', 'none');
     }
-    if(SalePrice.val() == ""){
+    if (SalePrice.val() == "") {
         SalePrice.css('border', '1px solid red');;
-    }else{
+    } else {
         SalePrice.css('border', 'none');
+    }
+    if (Units.val() == "") {
+        Units.css('border', '1px solid red');;
+    } else {
+        Units.css('border', 'none');
     }
 }
 
@@ -37,19 +42,34 @@ $(document).ready(function () {
     $('#DataGridView').DataTable({
         "ajax": {
             "url": "/Products",
-            "type": "POST",
-            "columns": [
-                { "data": "Id" },
-                { "data": "Name" },
-                { "data": "BuyCost" },
-                { "data": "SalePrice" }
-            ]
+            "dataSrc": ""
         },
+        "scrollY": true,
+        "responsive": true,
+        "scrollCollapse": true,
+        "columns": [
+            { "data": "Id" },
+            { "data": "Name" },
+            { "data": "BuyCost" },
+            { "data": "SalePrice" },
+            { "data": "Units" }
+        ],
         "paging": false,
-        "scrollY": 400,
-        "ordering": false,
-        "select": true,
-        "search": true
+    });
+
+    $('#DataGridView tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        } else {
+            $('#DataGridView').DataTable().$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+    $('#DataGridView tbody').on('dblclick', 'tr', function () {
+        Name.val($('#DataGridView').DataTable().row(this).data().Name)
+        BuyCost.val($('#DataGridView').DataTable().row(this).data().BuyCost)
+        SalePrice.val($('#DataGridView').DataTable().row(this).data().SalePrice)
+        Units.val($('#DataGridView').DataTable().row(this).data().Units)
     });
 });
 
@@ -67,23 +87,55 @@ $('.logout').on('click', function () {
 })
 
 $('.Add').on('click', function () {
-    if(valid()){
+    if (valid()) {
         $.ajax({
-            url: 'addProduct',
+            url: '/addProduct',
             method: 'POST',
             data: {
-                Name: $('.Name').val(),
-                BuyCost: $('.BuyCost').val(),
-                SalePrice: $('.SalePrice').val()
+                Name: Name.val(),
+                BuyCost: BuyCost.val(),
+                SalePrice: SalePrice.val(),
+                Units: Units.val()
             },
             success: function (result) {
-                console.log(result);
-                $('#DataGridView').DataTable().ajax().reload();
+                if (result == true) {
+                    $('#DataGridView').DataTable().ajax.reload();
+                    Name.val("");
+                    BuyCost.val("");
+                    SalePrice.val("");
+                    Units.val("");
+                }
             }
         })
-    }else{
+    } else {
         inputValid();
     }
 })
 
 
+$('.Edit').on('click', function () {
+    const Id = $('#DataGridView').DataTable().row('tr.selected').data().Id;    
+    if (valid()) {
+        $.ajax({
+            url: '/editProduct/' + Id,
+            method: 'POST',
+            data: {
+                Name: Name.val(),
+                BuyCost: BuyCost.val(),
+                SalePrice: SalePrice.val(),
+                Units: Units.val()
+            },
+            success: function (result) {
+                if (result == true) {
+                    $('#DataGridView').DataTable().ajax.reload();
+                    Name.val("");
+                    BuyCost.val("");
+                    SalePrice.val("");
+                    Units.val("");
+                }
+            }
+        })
+    } else {
+        inputValid();
+    }
+})

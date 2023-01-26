@@ -7,19 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model products {
-  Id        Int    @id @default(autoincrement())
-  Name      String @db.VarChar(255)
-  BuyCost   String @db.VarChar(255)
-  SalePrice String @db.VarChar(255)
-}
-
 model users {
   Id        Int    @id @default(autoincrement())
   FirstName String @db.VarChar(255)
   LastName  String @db.VarChar(255)
   Email     String @db.VarChar(255)
   UidSerie  String @db.VarChar(255)
-  userName  String @db.VarChar(255)
   Password  String @db.VarChar(255)
+}
+
+model products {
+  Id        Int    @id @default(autoincrement())
+  Name      String @db.VarChar(255)
+  BuyCost   Float  @db.Float
+  SalePrice Float  @db.Float
+  Units     Int
+}
+
+model sessions {
+  session_id String  @id @db.VarChar(128)
+  expires    Int     @db.UnsignedInt
+  data       String? @db.MediumText
 }

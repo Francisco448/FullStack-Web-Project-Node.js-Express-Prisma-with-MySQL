@@ -24,7 +24,6 @@ passport.use('Local-SignUp', new LocalStrategy({
                 LastName: req.body.LastName,
                 Email: req.body.Email,
                 UidSerie: req.body.UidSerie,
-                userName: username + '-' + req.body.LastName,
                 Password: hash
             }
         })
@@ -54,9 +53,9 @@ passport.use('Local-Signin', new LocalStrategy({
     if (user != null) {
         const valid = await help.Compare(Password, user.Password);
         if (valid) {
-            return done(null, user, req.flash('success', 'Welcome'));
+            done(null, user, req.flash('success', 'Welcome'));
         } else {
-            return done(null, false, req.flash('message', 'Invalid password'));
+            done(null, false, req.flash('message', 'Invalid password'));
         }
     } else {
         return done(null, false, req.flash('message', 'User not exist, please Sign Up'));
@@ -68,10 +67,10 @@ passport.serializeUser((user, done) => {
     done(null, user.Id);
 })
 
-passport.deserializeUser(async (user, done) => {
+passport.deserializeUser(async (id, done) => {
     const users = await prisma.users.findFirst({
         where: {
-            Id: user.id
+            Id: id
         }
     })
     done(null, users);

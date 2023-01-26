@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../components/_Links.ejs')%>
     <link rel="stylesheet" href="../../Css/Profile/Base.css">
-    <title>Profile</title>
+    <title><%=user.FirstName%> <%=user.LastName%></title>
 </head>
 <body>
         <%- include('../elements/navBar/navBar.ejs')%>
         <div class="dashboard card">
             <%- include('./partials/_products.ejs')%>
+            <%- include('./partials/_movements.ejs')%>
         </div>
 </body>
 
