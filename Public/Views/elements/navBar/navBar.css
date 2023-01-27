@@ -46,6 +46,7 @@
 }
 
 .item_list li{
+    color: gray;
     list-style: none;
     height: 50px;
     width: 90%;
@@ -57,7 +58,6 @@
     justify-content: center;
     transition: all 0.3s;
 }
-
 
 .item_list li a{
     text-decoration: none;
@@ -153,7 +153,6 @@
     transition: all 0.3s;
 }
 
-
 .item_list li a.open {
     text-decoration: none;
     color: gray;
@@ -180,5 +179,3 @@
     right: 0;
     transition: all 0.3s;
 }
-
-

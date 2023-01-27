@@ -14,6 +14,7 @@ model users {
   Email     String @db.VarChar(255)
   UidSerie  String @db.VarChar(255)
   Password  String @db.VarChar(255)
+  Capital Float @db.Float
 }
 
 model products {
@@ -22,6 +23,25 @@ model products {
   BuyCost   Float  @db.Float
   SalePrice Float  @db.Float
   Units     Int
+}
+
+model sale {
+  Id         Int      @id @default(autoincrement())
+  SaleDate   DateTime @db.DateTime(0)
+  Units      Int
+  client     String   @db.VarChar(255)
+  IdProducts Int
+
+  @@index([IdProducts], map: "sale_IdProducts_fkey")
+}
+
+model client {
+  Id        Int      @id @default(autoincrement())
+  FirstName String   @db.VarChar(255)
+  LastName  String   @db.VarChar(255)
+  Alias     String   @db.VarChar(255)
+  DateSince DateTime @db.DateTime(0)
+  DateTo    DateTime @db.DateTime(0)
 }
 
 model sessions {

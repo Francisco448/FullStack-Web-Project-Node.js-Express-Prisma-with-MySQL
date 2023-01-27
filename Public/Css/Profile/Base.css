@@ -1,5 +1,6 @@
 @import url('../../Views/elements/navBar/navBar.css');
 @import url('./partials/_Products.css');
+@import url('./partials/_movement.css');
 
 :root{
     --backgroup: #0a3d62;
@@ -12,6 +13,7 @@
 
 body{
     background-color: var(--backgroup);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .dashboard{
@@ -60,9 +62,7 @@ body{
     display: none;
 }
 
-
-.movementContainer .show{
+.movementContainer.show{
     z-index: 1;
     display: block;
-    background-color: green;
 }

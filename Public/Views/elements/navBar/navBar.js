@@ -1,5 +1,3 @@
-// require('Jquery');
-
 var sidebar = $('.sidebar');
 var header = $('.header');
 var button = $('.header > button');
@@ -8,7 +6,6 @@ var li = $('.item_list > li');
 var a = $('.item_list > li > a');
 var i = $('.item_list > li > a > i');
 var span = $('.item_list > li > a > span');
-
 
 button.on('click', function(){
     if(sidebar.hasClass('open')){

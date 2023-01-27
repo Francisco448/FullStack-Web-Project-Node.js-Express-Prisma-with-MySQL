@@ -6,5 +6,4 @@ const connectionString = {
     database: 'prismaProject'
 }
 
-
 module.exports = { connectionString };

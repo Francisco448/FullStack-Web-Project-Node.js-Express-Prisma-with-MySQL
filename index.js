@@ -28,7 +28,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use((req, res, next) => {
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');

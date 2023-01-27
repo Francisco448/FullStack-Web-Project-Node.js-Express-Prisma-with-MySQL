@@ -62,7 +62,6 @@ passport.use('Local-Signin', new LocalStrategy({
     }
 }))
 
-
 passport.serializeUser((user, done) => {
     done(null, user.Id);
 })

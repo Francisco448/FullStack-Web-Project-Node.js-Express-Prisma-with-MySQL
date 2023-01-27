@@ -1,10 +1,46 @@
 <div class="movementContainer">
     <div class="moveHeader">
-        <button class="Add btn btn-success" id="buttonProduct">Buy</button>
-        <button class="btn btn-warning" id="buttonProduct">Update</button>
-        <button class="btn btn-danger" id="buttonProduct">Delete</button>
+        <p>$ 0</p>
+        <input type="text" placeholder="Capital">
+        <button class="Add btn btn-success" id="buttonProduct">Update</button>
     </div>
     <div class="moveBody">
-        
+        <div class="stockTable">
+            <table class="stock w-100 h-100" id="DataGridStock">
+                <thead>
+                    <th style="width: 5%;">Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Units</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="saleTable">
+            <table class="sale w-100 h-100" id="DataGridSale">
+                <thead>
+                    <th>Name</th>
+                    <th>Units</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="moveFooter">
+        <div class="footerStock h-100 w-50">
+            
+        </div>
+        <div class="footerSale h-100 w-50">
+            <button class="btn btn-success">Process</button>
+            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger">Abort</button>
+            <select name="" id="">
+                <option value="Select a client" selected>Select a client</option>
+            </select>
+        </div>
+
     </div>
 </div>
