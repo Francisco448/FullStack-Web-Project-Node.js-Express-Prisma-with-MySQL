@@ -40,4 +40,13 @@ app.post('/editProduct/:Id', async(req, res)=>{
     res.send(true);
 })
 
+app.get('/deleteProduct/:Id', async(req, res)=>{
+    await prisma.products.delete({
+        where:{
+            Id: parseInt(req.params.Id)
+        }
+    });
+    res.send(true);
+})
+
 module.exports = app;
