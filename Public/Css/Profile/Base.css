@@ -1,22 +1,30 @@
 @import url('../../Views/elements/navBar/navBar.css');
 @import url('./partials/_Products.css');
 @import url('./partials/_movement.css');
+@import url('./partials/_clients.css');
 
-:root{
+:root {
     --backgroup: #0a3d62;
     --separator: lightgrey;
 }
 
-::placeholder{
+::placeholder {
     color: gray;
 }
 
-body{
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type="number"] { -ms-progress-appearance: textfield; }
+
+body {
     background-color: var(--backgroup);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.dashboard{
+.dashboard {
     height: 95%;
     width: calc(100% - 180px);
     position: absolute;
@@ -29,7 +37,7 @@ body{
     transition: all 0.3s;
 }
 
-.sidebar.open ~.dashboard{
+.sidebar.open~.dashboard {
     height: 95%;
     width: calc(100% - 350px);
     position: absolute;
@@ -42,27 +50,47 @@ body{
     transition: all 0.3s;
 }
 
-.datatables th{
+.datatables th {
     width: 10%;
     background-color: lightgray;
 }
 
-.productContainer{
+.productContainer {
     z-index: 1;
     display: block;
-}   
+}
 
-.productContainer.hidden{
-    z-index: 0;
-    display: none;
-}   
-
-.movementContainer{
+.productContainer.hidden {
     z-index: 0;
     display: none;
 }
 
-.movementContainer.show{
+.movementContainer {
+    z-index: 0;
+    display: none;
+}
+
+.movementContainer.show {
     z-index: 1;
+    display: block;
+}
+
+.clientContainer {
+    z-index: 0;
+    display: none;
+}
+
+.clientContainer.show {
+    z-index: 2;
+    display: block;
+}
+
+.saleContainer {
+    z-index: 0;
+    display: none;
+}
+
+.saleContainer.show {
+    z-index: 3;
     display: block;
 }

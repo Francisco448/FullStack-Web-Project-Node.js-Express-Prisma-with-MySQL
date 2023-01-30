@@ -14,7 +14,7 @@ model users {
   Email     String @db.VarChar(255)
   UidSerie  String @db.VarChar(255)
   Password  String @db.VarChar(255)
-  Capital Float @db.Float
+  Capital   Float  @db.Float
 }
 
 model products {
@@ -42,6 +42,9 @@ model client {
   Alias     String   @db.VarChar(255)
   DateSince DateTime @db.DateTime(0)
   DateTo    DateTime @db.DateTime(0)
+  Email     String   @db.VarChar(255)
+  Phone     Int
+  UidSerie  Int
 }
 
 model sessions {

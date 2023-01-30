@@ -1,11 +1,11 @@
-.productContainer{
+.clientContainer{
     width: 99.5%;
     height: 99%;
     margin: auto;
     border-radius: 5px;
 }
 
-.prodHeader{
+.clientHeader{
     height: 8%;
     width: 100%;
     border-bottom: 1px solid var(--separator);
@@ -16,7 +16,29 @@
     justify-content: center;
 }
 
-.prodBody{
+.clientHeader input{
+    background-color: lightgray;
+    color: gray;
+    height: 40px;
+    width: 200px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.clientHeader button{
+    height: 40px;
+    width: 80px;
+    color: white;
+    margin-left: 10px;
+}
+
+.clientHeader button:hover{
+    color: white;
+}
+
+.clientBody{
     height: 90%;
     width: 100%;
     margin-top: 18px;
@@ -24,21 +46,6 @@
     border-bottom-right-radius: 5px;
 }
 
-#inputProduct{
+.clientDatatable th{
     background-color: lightgray;
-    color: gray;
-    border: none;
-    outline: none;
-    height: 40px;
-    margin-right: 10px;
-    padding-left: 20px;
-    border-radius: 5px;
-    transition: all 0.3s;
-}
-
-#buttonProduct{
-    height: 40px;
-    width: 80px;
-    color: white;
-    margin-right: 10px;
 }

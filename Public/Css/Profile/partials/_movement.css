@@ -106,3 +106,27 @@
     padding-left: 10px;
     margin-left: 10px;
 }
+
+
+.footerStock{
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.footerStock button{
+    height: 40px;
+    margin-right: 5px;
+}
+
+.footerStock input{
+    background-color: lightgray;
+    color: gray;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 200px;
+    padding-left: 20px;
+    margin-left: 10px;
+}
