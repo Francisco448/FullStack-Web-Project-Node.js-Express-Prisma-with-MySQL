@@ -1,47 +1,21 @@
 <div class="movementContainer">
     <div class="moveHeader">
-        <p>$ 0</p>
-        <input type="number" placeholder="Capital">
-        <button class="Add btn btn-success" id="buttonProduct">Update</button>
+        <div class="filterDate w-50 h-100">
+            <p>From: </p>
+            <input type="date">
+            <p>To: </p>
+            <input type="date">
+            <button class="btn btn-success">Filter</button>
+        </div>
+        <div class="filterProduct w-50 h-100">
+            <select name="" id="">
+                <option value="Select a product" selected>Select a product</option>
+            </select>
+            <button class="btn btn-success">Search</button>
+        </div>
     </div>
     <div class="moveBody">
-        <div class="stockTable">
-            <table class="stock w-100 h-100" id="DataGridStock">
-                <thead>
-                    <th style="width: 5%;">Code</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Units</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-        <div class="saleTable">
-            <table class="sale w-100 h-100" id="DataGridSale">
-                <thead>
-                    <th>Name</th>
-                    <th>Units</th>
-                    <th>Total</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="moveFooter">
-        <div class="footerStock h-100 w-50">
-            <button class="btn btn-success">Add</button>
-            <input type="number" placeholder="Units">
-        </div>
-        <div class="footerSale h-100 w-50">
-            <button class="btn btn-success">Process</button>
-            <button class="btn btn-danger">Delete</button>
-            <button class="btn btn-danger">Abort</button>
-            <select name="" id="">
-                <option value="Select a client" selected>Select a client</option>
-            </select>
-        </div>
-
+        <%- include('../../elements/Graphics/chartPanel.ejs')%>
     </div>
 </div>
+

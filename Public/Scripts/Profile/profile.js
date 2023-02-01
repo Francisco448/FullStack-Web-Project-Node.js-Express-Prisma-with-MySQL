@@ -1,29 +1,33 @@
 // require('Jquery');
-
-$('.productsView').on('click', function(){
-    $('.productContainer').removeClass('hidden');
-    $('.movementContainer').removeClass('show');
-    $('.clientContainer').removeClass('show');
-    $('.saleContainer').removeClass('show');
-})
+var movement = $('.movementContainer');
+var product = $('.productContainer');
+var sale = $('.saleContainer');
+var client = $('.clientContainer');
 
 $('.movementView').on('click', function(){
-    $('.productContainer').addClass('hidden');
-    $('.saleContainer').removeClass('show');
-    $('.clientContainer').removeClass('show');
-    $('.movementContainer').addClass('show');
+    movement.removeClass('close');
+    product.removeClass('open');
+    sale.removeClass('open');
+    client.removeClass('open');
 })
 
-$('.clientView').on('click', function(){
-    $('.productContainer').addClass('hidden');
-    $('.movementContainer').removeClass('show');
-    $('.saleContainer').removeClass('show');
-    $('.clientContainer').addClass('show');
+$('.productsView').on('click', function(){
+    movement.addClass('close');
+    product.addClass('open');
+    sale.removeClass('open');
+    client.removeClass('open');
 })
 
 $('.saleView').on('click', function(){
-    $('.productContainer').addClass('hidden');
-    $('.movementContainer').removeClass('show');
-    $('.clientContainer').removeClass('show');
-    $('.saleContainer').addClass('show');
+    movement.addClass('close');
+    product.removeClass('open');
+    sale.addClass('open');
+    client.removeClass('open');
+})
+
+$('.clientView').on('click', function(){
+    movement.addClass('close');
+    product.removeClass('open');
+    sale.removeClass('open');
+    client.addClass('open');
 })

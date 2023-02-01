@@ -1,0 +1,18 @@
+.balanceSale{
+    align-items: center;
+    justify-content: start;
+}
+
+.balanceSale canvas{
+    height: 50%;
+}
+
+.balanceProduct{
+    align-items: center;
+    justify-content: start;
+}
+
+.statistics{
+    align-items: center;
+    justify-content: start;
+}

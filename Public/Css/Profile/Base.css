@@ -1,7 +1,9 @@
 @import url('../../Views/elements/navBar/navBar.css');
-@import url('./partials/_Products.css');
-@import url('./partials/_movement.css');
+@import url('../../Views/elements/Graphics/chartPanel.css');
+@import url('./partials/_movements.css');
+@import url('./partials/_products.css');
 @import url('./partials/_clients.css');
+@import url('./partials/_sales.css');
 
 :root {
     --backgroup: #0a3d62;
@@ -55,42 +57,43 @@ body {
     background-color: lightgray;
 }
 
-.productContainer {
-    z-index: 1;
+
+.movementContainer{
     display: block;
-}
-
-.productContainer.hidden {
-    z-index: 0;
-    display: none;
-}
-
-.movementContainer {
-    z-index: 0;
-    display: none;
-}
-
-.movementContainer.show {
     z-index: 1;
-    display: block;
 }
 
-.clientContainer {
-    z-index: 0;
+.movementContainer.close{
     display: none;
+    z-index: 0;
 }
 
-.clientContainer.show {
+.productContainer{
+    display: none;
+    z-index: 0;
+}
+
+.productContainer.open{
+    display: block;
     z-index: 2;
-    display: block;
 }
 
-.saleContainer {
-    z-index: 0;
+.saleContainer{
     display: none;
+    z-index: 0;
 }
 
-.saleContainer.show {
-    z-index: 3;
+.saleContainer.open{
     display: block;
+    z-index: 1;
+}
+
+.clientContainer{
+    display: none;
+    z-index: 0;
+}
+
+.clientContainer.open{
+    display: block;
+    z-index: 1;
 }

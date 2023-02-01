@@ -1,0 +1,80 @@
+.movementContainer{
+    width: 99.5%;
+    height: 99%;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.moveHeader{
+    height: 8%;
+    width: 100%;
+    border-bottom: 1px solid var(--separator);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moveBody{
+    height: 90%;
+    width: 100%;
+    margin-top: 18px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.filterDate{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.filterDate input{
+    height: 40px;
+    width: 200px;
+    background-color: lightgray;
+    color: gray;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.filterDate button{
+  height: 40px;
+  width: 80px;
+  margin-left: 20px;
+}
+
+.filterDate p{
+    margin: 0 0 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+  
+
+.filterProduct{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.filterProduct select{
+    background-color: lightgray;
+    color: gray;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 200px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.filterProduct button{
+    height: 40px;
+    width: 80px;
+    margin-left: 20px;
+  }

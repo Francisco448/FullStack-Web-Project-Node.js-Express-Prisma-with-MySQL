@@ -44,9 +44,6 @@ $(document).ready(function () {
             "url": "/Products",
             "dataSrc": ""
         },
-        "scrollY": true,
-        "responsive": true,
-        "scrollCollapse": true,
         "columns": [
             { "data": "Id" },
             { "data": "Name" },
@@ -56,7 +53,6 @@ $(document).ready(function () {
         ],
         "paging": false,
     });
-
     $('#DataGridView tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
