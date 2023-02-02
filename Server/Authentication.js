@@ -10,6 +10,10 @@ app.get('/signup', isNotLoggedIn, (req, res) => {
     res.render('Account/signup.ejs')
 })
 
+app.get('/Profile', isLoggedIn, (req, res) => {
+    res.render('Profile/Profile.ejs');
+})
+
 app.post('/signup', isNotLoggedIn, passport.authenticate('Local-SignUp', {
     successRedirect: '/signin',
     failureRedirect: '/signup',

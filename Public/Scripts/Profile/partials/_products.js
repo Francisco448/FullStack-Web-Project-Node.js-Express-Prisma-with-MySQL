@@ -21,17 +21,17 @@ function inputValid() {
         Name.css('border', 'none');
     }
     if (BuyCost.val() == "") {
-        BuyCost.css('border', '1px solid red');;
+        BuyCost.css('border', '1px solid red');
     } else {
         BuyCost.css('border', 'none');
     }
     if (SalePrice.val() == "") {
-        SalePrice.css('border', '1px solid red');;
+        SalePrice.css('border', '1px solid red');
     } else {
         SalePrice.css('border', 'none');
     }
     if (Units.val() == "") {
-        Units.css('border', '1px solid red');;
+        Units.css('border', '1px solid red');
     } else {
         Units.css('border', 'none');
     }
@@ -41,7 +41,7 @@ function inputValid() {
 $(document).ready(function () {
     $('#DataGridView').DataTable({
         "ajax": {
-            "url": "/Products",
+            "url": "/getProducts",
             "dataSrc": ""
         },
         "columns": [

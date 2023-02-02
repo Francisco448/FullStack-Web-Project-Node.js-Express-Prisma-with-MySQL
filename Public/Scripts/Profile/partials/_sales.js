@@ -1,7 +1,10 @@
+var dataTableStock = $('#DataGridStock');
+var dataTableSale = $('#DataGridSale');
+
 $(document).ready(function () {
     $('#DataGridStock').DataTable({
         "ajax": {
-            "url": "/Products",
+            "url": "/getProducts",
             "dataSrc": ""
         },
         "columns": [
@@ -16,23 +19,22 @@ $(document).ready(function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         } else {
-            $('#DataGridStock').DataTable().$('tr.selected').removeClass('selected');
+            dataTableStock.DataTable().$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
-});
-
-
-$(document).ready(function () {
     $('.addProduct').on('click', function () {
-        if ($('#DataGridStock').DataTable().row('tr.selected').data() != undefined) {
-            $('#DataGridSale').DataTable().row.add({
-                "Name": $('#DataGridStock').DataTable().row('tr.selected').data().Name,
-                "SalePrice": $('#DataGridStock').DataTable().row('tr.selected').data().SalePrice,
+        if (dataTableStock.DataTable().row('tr.selected').data() != undefined) {
+            dataTableSale.DataTable().row.add({
+                "Name": dataTableStock.DataTable().row('tr.selected').data().Name,
+                "SalePrice": dataTableStock.DataTable().row('tr.selected').data().SalePrice,
                 "Units": $('#addUnits').val()
             }).draw(false);
         }
     })
+});
+// require('Jquery');
+$(document).ready(function () {
     $('#DataGridSale').DataTable({
         "columns": [
             { "data": "Name", "name": "Name", "autoWidth": true },
@@ -49,9 +51,30 @@ $(document).ready(function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         } else {
-            $('#DataGridSale').DataTable().$('tr.selected').removeClass('selected');
+            dataTableSale.DataTable().$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
+    $('#Process').on('click', function () {
+        var newSale = [];
+        for (i = 0; i < $('#DataGridSale').DataTable().column(0).data().count(); i++) {
+            var sale = {
+                Name: $('#DataGridSale').DataTable().rows().data()[i].Name,
+                SalePrice: $('#DataGridSale').DataTable().rows().data()[i].SalePrice,
+                Units: $('#DataGridSale').DataTable().rows().data()[i].Units,
+            }
+            newSale.push(sale);
+        }
+        $.ajax({
+            url: '/addSale',
+            method: 'post',
+            dataType: 'JSON',
+            traditional: true,
+            data: { newSale: JSON.stringify(newSale) },
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    })
 });
 

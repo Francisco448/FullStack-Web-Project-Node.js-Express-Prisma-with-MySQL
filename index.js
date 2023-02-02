@@ -36,7 +36,10 @@ app.use((req, res, next) => {
 });
 
 app.use(require('./Server/Authentication'));
-app.use(require('./Server/ProfileController'));
+app.use(require('./Server/ProductController'));
+app.use(require('./Server/ClientController'));
+app.use(require('./Server/SaleController'));
+app.use(require('./Server/MovementController'));
 app.use(express.static(path.join(__dirname, 'Public')));
 
 app.listen(app.get('port'), () => {

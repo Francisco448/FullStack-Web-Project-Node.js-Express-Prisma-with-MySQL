@@ -41,7 +41,7 @@ model client {
   LastName  String   @db.VarChar(255)
   Alias     String   @db.VarChar(255)
   DateSince DateTime @db.DateTime(0)
-  DateTo    DateTime @db.DateTime(0)
+  DateTo    DateTime? @db.DateTime(0)
   Email     String   @db.VarChar(255)
   Phone     Int
   UidSerie  Int

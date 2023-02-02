@@ -20,7 +20,8 @@
     background-color: lightgray;
     color: gray;
     height: 40px;
-    width: 200px;
+    min-width: 90px;
+    max-width: 200px;
     border: none;
     outline: none;
     padding-left: 20px;
