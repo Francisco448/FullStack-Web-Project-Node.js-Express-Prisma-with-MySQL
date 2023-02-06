@@ -40,6 +40,7 @@ app.use(require('./Server/Controllers/ProductController'));
 app.use(require('./Server/Controllers/ClientController'));
 app.use(require('./Server/Controllers/SaleController'));
 app.use(require('./Server/Controllers/MovementController'));
+
 app.use(express.static(path.join(__dirname, 'Public')));
 
 app.listen(app.get('port'), () => {
