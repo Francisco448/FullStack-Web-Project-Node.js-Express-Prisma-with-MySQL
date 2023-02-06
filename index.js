@@ -3,11 +3,11 @@ const path = require('path');
 const morgan = require('morgan');
 const session = require('express-session');
 const MYSQLStorage = require('express-mysql-session');
-const { connectionString } = require('./ConnectionString/connectionString');
+const { connectionString } = require('./ConnectionString/connectionString.json')
 const passport = require('passport');
 const flash = require('connect-flash');
 const app = express();
-require('./Server/passport');
+require('./Server/Security/passport');
 
 
 app.set('port', process.env.PORT || 5000);
@@ -35,11 +35,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(require('./Server/Authentication'));
-app.use(require('./Server/ProductController'));
-app.use(require('./Server/ClientController'));
-app.use(require('./Server/SaleController'));
-app.use(require('./Server/MovementController'));
+app.use(require('./Server/Security/Authentication'));
+app.use(require('./Server/Controllers/ProductController'));
+app.use(require('./Server/Controllers/ClientController'));
+app.use(require('./Server/Controllers/SaleController'));
+app.use(require('./Server/Controllers/MovementController'));
 app.use(express.static(path.join(__dirname, 'Public')));
 
 app.listen(app.get('port'), () => {

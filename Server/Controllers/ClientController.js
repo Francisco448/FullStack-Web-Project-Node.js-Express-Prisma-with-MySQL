@@ -1,5 +1,5 @@
 const app = require('express').Router();
-const { isLoggedIn } = require('./Auth');
+const { isLoggedIn } = require('../Security/Auth');
 const { PrismaClient } = require('@prisma/client');
 const { format } = require('morgan');
 const prisma = new PrismaClient();
