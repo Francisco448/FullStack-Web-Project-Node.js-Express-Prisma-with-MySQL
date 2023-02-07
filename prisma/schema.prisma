@@ -28,23 +28,25 @@ model products {
 model sale {
   Id         Int      @id @default(autoincrement())
   SaleDate   DateTime @db.DateTime(0)
-  Units      Int
-  client     String   @db.VarChar(255)
-  IdProducts Int
+  Units      Int      @db.Int
+  Idclient   Int      @db.Int
+  clients client @relation(references: [Id], fields: [Idclient])
+  IdProducts Int      @db.Int
 
   @@index([IdProducts], map: "sale_IdProducts_fkey")
 }
 
 model client {
-  Id        Int      @id @default(autoincrement())
-  FirstName String   @db.VarChar(255)
-  LastName  String   @db.VarChar(255)
-  Alias     String   @db.VarChar(255)
-  DateSince DateTime @db.DateTime(0)
+  Id        Int       @id @default(autoincrement())
+  FirstName String    @db.VarChar(255)
+  LastName  String    @db.VarChar(255)
+  Alias     String    @db.VarChar(255)
+  DateSince DateTime  @db.DateTime(0)
   DateTo    DateTime? @db.DateTime(0)
-  Email     String   @db.VarChar(255)
+  Email     String    @db.VarChar(255)
   Phone     Int
   UidSerie  Int
+  sale sale[]
 }
 
 model sessions {

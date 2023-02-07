@@ -1,6 +1,6 @@
 <div class="saleContainer">
     <div class="saleHeader">
-        <p>$ 0 Capital</p>
+        <p class="capitalValue"></p>
     </div>
     <div class="saleBody">
         <div class="stockTable">
@@ -18,8 +18,9 @@
         <div class="saleTable">
             <table class="sale w-100 h-100" id="DataGridSale">
                 <thead>
+                    <th>Code</th>
                     <th>Name</th>
-                    <th>SalePrice</th>
+                    <th>Price</th>
                     <th>Units</th>
                 </thead>
                 <tbody>
@@ -34,10 +35,10 @@
         </div>
         <div class="footerSale h-100 w-50">
             <button class="btn btn-success" id="Process">Process</button>
-            <button class="btn btn-danger">Delete</button>
-            <button class="btn btn-danger">Abort</button>
-            <select name="" id="">
-                <option value="Select a client" selected>Select a client</option>
+            <button class="btn btn-danger" id="Delete">Delete</button>
+            <button class="btn btn-danger" id="Abort">Abort</button>
+            <select name="selectClient" class="selectClient" id="selectClient">
+                <option value="0" selected>Select a client</option>
             </select>
         </div>
     </div>

@@ -1,6 +1,29 @@
 var dataTableStock = $('#DataGridStock');
 var dataTableSale = $('#DataGridSale');
+var selectClient = $('.selectClient');
 
+// require('Jquery');
+$.ajax({
+    url: '/getClients',
+    method: 'get',
+    success: function (raw) {
+        var options;
+        for (i = 0; i < raw.length; i++) {
+            options += "<option value='" + raw[i].Id + "'>" + raw[i].FirstName + ' ' + raw[i].LastName + "</option>";
+        }
+        selectClient.append(options);
+    }
+})
+
+$.ajax({
+    url: '/getCapital',
+    method: 'get',
+    success: function (raw) {
+        $('.capitalValue').text('$ ' + raw.Capital + ' is your capital');
+    }
+})
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
     $('#DataGridStock').DataTable({
         "ajax": {
@@ -15,6 +38,7 @@ $(document).ready(function () {
         ],
         "paging": false,
     });
+
     $('#DataGridStock tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
@@ -23,20 +47,43 @@ $(document).ready(function () {
             $(this).addClass('selected');
         }
     });
+
     $('.addProduct').on('click', function () {
+        var Id = dataTableStock.DataTable().row('tr.selected').data().Id;
+        var Name = dataTableStock.DataTable().row('tr.selected').data().Name;
+        var SalePrice = dataTableStock.DataTable().row('tr.selected').data().SalePrice;
+        var UnitTable = dataTableStock.DataTable().row('tr.selected').data().Units;
+        var Units = $('#addUnits').val();
         if (dataTableStock.DataTable().row('tr.selected').data() != undefined) {
             dataTableSale.DataTable().row.add({
-                "Name": dataTableStock.DataTable().row('tr.selected').data().Name,
-                "SalePrice": dataTableStock.DataTable().row('tr.selected').data().SalePrice,
-                "Units": $('#addUnits').val()
+                "Id": Id,
+                "Name": Name,
+                "SalePrice": SalePrice,
+                "Units": Units
             }).draw(false);
+            var newUnits = parseInt(UnitTable - Units);
+            $.ajax({
+                url: '/updateUnits/' + Id,
+                method: 'POST',
+                data: {
+                    Units: newUnits
+                },
+                success: function (res) {
+                    if (res == true) {
+                        dataTableStock.DataTable().ajax.reload();
+                    }
+                }
+            })
         }
     })
 });
-// require('Jquery');
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
     $('#DataGridSale').DataTable({
         "columns": [
+            { "data": "Id", "name": "Id", "autoWidth": true },
             { "data": "Name", "name": "Name", "autoWidth": true },
             { "data": "SalePrice", "name": "SalePrice", "autoWidth": true },
             { "data": "Units", "name": "Units", "autoWidth": true }
@@ -47,6 +94,7 @@ $(document).ready(function () {
         }],
         "paging": false,
     });
+
     $('#DataGridSale tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
@@ -55,13 +103,15 @@ $(document).ready(function () {
             $(this).addClass('selected');
         }
     });
+
     $('#Process').on('click', function () {
         var newSale = [];
         for (i = 0; i < $('#DataGridSale').DataTable().column(0).data().count(); i++) {
             var sale = {
-                Name: $('#DataGridSale').DataTable().rows().data()[i].Name,
+                IdProduct: $('#DataGridSale').DataTable().rows().data()[i].Id,
+                IdClient: parseInt(selectClient.val()),
                 SalePrice: $('#DataGridSale').DataTable().rows().data()[i].SalePrice,
-                Units: $('#DataGridSale').DataTable().rows().data()[i].Units,
+                Units: parseInt($('#DataGridSale').DataTable().rows().data()[i].Units),
             }
             newSale.push(sale);
         }
@@ -76,5 +126,9 @@ $(document).ready(function () {
             }
         })
     })
+
+
+
+
 });
 
