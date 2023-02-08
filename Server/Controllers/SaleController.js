@@ -11,7 +11,6 @@ app.get('/getCapital', isLoggedIn, async (req, res) => {
         }
     })
     res.json({Capital: req.user.Capital});
-    // console.log(user.Capital);
 })
 
 app.post('/addSale', isLoggedIn, async (req, res) => {
@@ -26,7 +25,7 @@ app.post('/addSale', isLoggedIn, async (req, res) => {
 
 
 app.post('/updateUnits/:id', isLoggedIn, async (req, res) => {
-    await prisma.products.update({
+    await prisma.products.updateMany({
         data: {
             Units: parseInt(req.body.Units)
         }, where: {

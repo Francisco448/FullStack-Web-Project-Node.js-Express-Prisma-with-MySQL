@@ -52,32 +52,33 @@ $(document).ready(function () {
         var Id = dataTableStock.DataTable().row('tr.selected').data().Id;
         var Name = dataTableStock.DataTable().row('tr.selected').data().Name;
         var SalePrice = dataTableStock.DataTable().row('tr.selected').data().SalePrice;
-        var UnitTable = dataTableStock.DataTable().row('tr.selected').data().Units;
+        var UnitTable = dataTableStock.DataTable().cell('tr.selected > td:eq(3)');
         var Units = $('#addUnits').val();
         if (dataTableStock.DataTable().row('tr.selected').data() != undefined) {
-            dataTableSale.DataTable().row.add({
-                "Id": Id,
-                "Name": Name,
-                "SalePrice": SalePrice,
-                "Units": Units
-            }).draw(false);
-            var newUnits = parseInt(UnitTable - Units);
-            $.ajax({
-                url: '/updateUnits/' + Id,
-                method: 'POST',
-                data: {
-                    Units: newUnits
-                },
-                success: function (res) {
-                    if (res == true) {
-                        dataTableStock.DataTable().ajax.reload();
-                    }
-                }
-            })
+            if (UnitTable.data() > 0 && Units < UnitTable.data()) {
+                dataTableSale.DataTable().row.add({
+                    "Id": Id,
+                    "Name": Name,
+                    "SalePrice": SalePrice,
+                    "Units": Units
+                }).draw(false);
+                var newUnits = parseInt(UnitTable.data() - Units);
+                UnitTable.data(newUnits)
+            }else if(UnitTable.data() > 0 && Units > UnitTable.data()){
+                dataTableSale.DataTable().row.add({
+                    "Id": Id,
+                    "Name": Name,
+                    "SalePrice": SalePrice,
+                    "Units": UnitTable.data()
+                }).draw(false);
+                var newUnits = parseInt(UnitTable.data() - Units);
+                UnitTable.data('0')
+            }
+        }else if(UnitTable.data() == 0){
+            event.preventDefault();
         }
     })
 });
-
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
@@ -127,7 +128,24 @@ $(document).ready(function () {
         })
     })
 
+    $('#Delete').on('click', function(){
+        var saleCount = $('#DataGridSale').DataTable().column(0).data().count();
+        var stockCount = $('#DataGridStock').DataTable().column(0).data().count();
+        var UnitTable = dataTableStock.DataTable().cell('tr > td:eq(3)');
 
+        for(i = 0; i < saleCount; i++){
+            for(z = 0; z < stockCount; z++){
+                var saleId = $('#DataGridSale').DataTable().rows().data()[i].Id
+                var stockId = $('#DataGridStock').DataTable().rows().data()[i].Id                
+                var saleUnits = $('#DataGridSale').DataTable().rows().data()[i].Units;
+                var stockUnits = $('#DataGridStock').DataTable().rows().data()[i].Units;     
+
+                if(saleId ==  stockId){
+                    UnitTable.data(parseInt(saleUnits + stockUnits))
+                }
+            }
+        }
+    })
 
 
 });
