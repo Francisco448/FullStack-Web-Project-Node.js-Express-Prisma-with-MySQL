@@ -2,7 +2,6 @@ var dataTableStock = $('#DataGridStock');
 var dataTableSale = $('#DataGridSale');
 var selectClient = $('.selectClient');
 
-// require('Jquery');
 $.ajax({
     url: '/getClients',
     method: 'get',
@@ -23,7 +22,7 @@ $.ajax({
     }
 })
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Stock ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
     $('#DataGridStock').DataTable({
         "ajax": {
@@ -64,7 +63,7 @@ $(document).ready(function () {
                 }).draw(false);
                 var newUnits = parseInt(UnitTable.data() - Units);
                 UnitTable.data(newUnits)
-            }else if(UnitTable.data() > 0 && Units > UnitTable.data()){
+            } else if (UnitTable.data() > 0 && Units > UnitTable.data()) {
                 dataTableSale.DataTable().row.add({
                     "Id": Id,
                     "Name": Name,
@@ -74,13 +73,14 @@ $(document).ready(function () {
                 var newUnits = parseInt(UnitTable.data() - Units);
                 UnitTable.data('0')
             }
-        }else if(UnitTable.data() == 0){
+        } else if (UnitTable.data() == 0) {
             event.preventDefault();
         }
     })
 });
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Sales---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
     $('#DataGridSale').DataTable({
         "columns": [
@@ -107,7 +107,8 @@ $(document).ready(function () {
 
     $('#Process').on('click', function () {
         var newSale = [];
-        for (i = 0; i < $('#DataGridSale').DataTable().column(0).data().count(); i++) {
+        var saleCount = dataTableSale.DataTable().column(0).data().count();
+        for (i = 0; i < saleCount; i++) {
             var sale = {
                 IdProduct: $('#DataGridSale').DataTable().rows().data()[i].Id,
                 IdClient: parseInt(selectClient.val()),
@@ -128,24 +129,23 @@ $(document).ready(function () {
         })
     })
 
-    $('#Delete').on('click', function(){
-        var saleCount = $('#DataGridSale').DataTable().column(0).data().count();
-        var stockCount = $('#DataGridStock').DataTable().column(0).data().count();
-        var UnitTable = dataTableStock.DataTable().cell('tr > td:eq(3)');
-
-        for(i = 0; i < saleCount; i++){
-            for(z = 0; z < stockCount; z++){
-                var saleId = $('#DataGridSale').DataTable().rows().data()[i].Id
-                var stockId = $('#DataGridStock').DataTable().rows().data()[i].Id                
-                var saleUnits = $('#DataGridSale').DataTable().rows().data()[i].Units;
-                var stockUnits = $('#DataGridStock').DataTable().rows().data()[i].Units;     
-
-                if(saleId ==  stockId){
-                    UnitTable.data(parseInt(saleUnits + stockUnits))
-                }
+    $('#Delete').on('click', function () {
+        var sale = dataTableSale.DataTable().row('tr.selected');
+        var stock = dataTableStock.DataTable().rows();
+        var stockUnits = dataTableStock.DataTable().cell('tr.selected > td:eq(3)');
+        var stockCount = dataTableStock.DataTable().column(0).rows().count();
+        for (i = 0; i < stockCount; i++) {
+            if (stock.data()[i].Id == sale.data().Id) {
+                var newUnits = parseInt(stockUnits.data()) + parseInt(sale.data().Units);
+                stockUnits.data(parseInt(newUnits))
+                sale.remove().draw();
             }
         }
     })
+
+
+
+
 
 
 });
